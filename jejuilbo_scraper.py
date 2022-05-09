@@ -44,7 +44,11 @@ def get_article_list(page_num:int):
         byline_0 = bylines[0]
         byline_1 = bylines[1]
         byline_2 = bylines[2]
-        article = get_article_paragraphs(url)
+        
+        try:
+            article = get_article_paragraphs(url)
+        except:
+            article = "No Response"
 
         titles.append(title)
         urls.append(url)
