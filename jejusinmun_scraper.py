@@ -29,7 +29,7 @@ def get_article_list(page_num:int):
             .find("tr").find("td").find("table")
     table_rows = table_body.find_all("tr")
 
-    date = datetime.datetime.strptime(byline_1, "%Y-%m-%d %H:%M")
+    date = datetime.datetime.strptime(byline_1, "%Y-%m-%d")
     is_done = False
     titles = []
     urls = []
