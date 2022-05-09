@@ -56,7 +56,7 @@ def get_article_list(page_num:int):
 
         date = datetime.datetime.strptime(byline_2, "%Y-%m-%d %H:%M")
 
-        if date < datetime.date(2018, 5, 1):
+        if date < datetime.datetime(2018, 5, 1):
             is_done = True
             break
     
