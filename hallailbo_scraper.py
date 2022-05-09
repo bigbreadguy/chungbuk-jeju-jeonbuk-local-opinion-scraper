@@ -85,18 +85,12 @@ def get_article_list(page_num:int):
 if __name__ == "__main__":
     page_num = 1
 
-    scrape_result = pd.DataFrame(
-        columns=["titles", "urls", "summaries", "bylines_0", "bylines_1", "articlies"]
-        )
-    
     while True:
         result_df, is_done = get_article_list(page_num)
-        scrape_result = pd.concat([scrape_result, result_df], ignore_index=True)
         
         if is_done:
             break
 
+        result_df.to_csv(os.path.join("result", f"hallailbo_opinions_p{page_num}.csv"), encoding="utf-8-sig")
         print(f"{page_num} 스크랩 완료")
         page_num+=1
-    
-    scrape_result.to_csv(os.path.join("result", "hallailbo_opinions.csv"), encoding="utf-8-sig")
