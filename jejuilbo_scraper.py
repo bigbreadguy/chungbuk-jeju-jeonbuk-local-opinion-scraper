@@ -38,7 +38,7 @@ def get_article_list(page_num:int):
     for list_block in list_blocks:
         list_title = list_block.find(class_="list-titles")
         title = list_title.find("a").get_text()
-        url = list_title.find("a").get("href")
+        url = "http://www.jejunews.com" + list_title.find("a").get("href")
         summary = list_block.find(class_="list-summary").get_text()
         bylines = list_block.find(class_="list-dated").get_text().split(" | ")
         byline_0 = bylines[0]
