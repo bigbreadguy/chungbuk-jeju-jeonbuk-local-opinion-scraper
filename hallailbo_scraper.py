@@ -45,7 +45,7 @@ def get_article_list(page_num:int):
     articles = []
     for article_div in article_divs:
         divs = article_div.find_all("div")
-        try:
+        if len(divs) > 0:
             for div in divs:
                 a = div.find("a")
                 if a is not None:
@@ -66,8 +66,6 @@ def get_article_list(page_num:int):
 
             p = article_div.find("p")
             summaries.append(p.get_text())
-        except:
-            pass
 
     result = pd.DataFrame(
                 data = {
@@ -83,6 +81,13 @@ def get_article_list(page_num:int):
     return result, is_done
 
 if __name__ == "__main__":
+    if not os.path.exists("./result"):
+        os.makedirs("./result")
+
+    result_dir = os.path.join("./result", "hallailbo")
+    if not os.path.exists(result_dir):
+        os.makedirs(result_dir)
+
     page_num = 1
 
     while True:
@@ -91,6 +96,6 @@ if __name__ == "__main__":
         if is_done:
             break
 
-        result_df.to_csv(os.path.join("result", f"hallailbo_opinions_p{page_num}.csv"), encoding="utf-8-sig")
-        print(f"{page_num} 스크랩 완료")
+        result_df.to_csv(os.path.join(result_dir, f"hallailbo_opinions_p{page_num}.csv"), encoding="utf-8-sig")
+        print(f"{page_num} 페이지 스크랩 완료")
         page_num+=1
