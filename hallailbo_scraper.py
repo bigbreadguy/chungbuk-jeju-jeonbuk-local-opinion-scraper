@@ -1,4 +1,5 @@
 import os
+import datetime
 import requests
 from bs4 import BeautifulSoup
 import pandas as pd
@@ -21,11 +22,10 @@ def get_paragraph(url:str):
     return byline_0, byline_1, article
 
 def is_before_2018(byline:str):
-    year_str = byline.split("입력 : ")[-1].split(". ")[0]
-    if int(year_str) < 2018:
-        return True
-    else:
-        return False
+    year_str = byline.split("입력 : ")[-1].split("(")[0]
+    date = datetime.datetime.strptime(year_str, "%Y. %m.%d")
+
+    return date < datetime.datetime(2018, 5, 1)
 
 def get_article_list(page_num:int):
     url_base = f"http://www.ihalla.com/section.php?sid=43&page={page_num}"
