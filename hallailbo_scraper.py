@@ -91,6 +91,7 @@ if __name__ == "__main__":
     scrape_result = pd.DataFrame(
         columns=["titles", "urls", "summaries", "bylines_0", "bylines_1", "articlies"]
         )
+    
     while True:
         result_df, is_done = get_article_list(page_num)
         scrape_result = pd.concat([scrape_result, result_df], ignore_index=True)
