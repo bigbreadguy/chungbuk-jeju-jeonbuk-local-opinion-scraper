@@ -98,5 +98,7 @@ if __name__ == "__main__":
         page_num+=1
         if is_done:
             break
+
+        print(f"{page_num} 스크랩 완료")
     
     scrape_result.to_csv(os.path.join("result", "hallailbo_opinions.csv"), encoding="utf-8-sig")
