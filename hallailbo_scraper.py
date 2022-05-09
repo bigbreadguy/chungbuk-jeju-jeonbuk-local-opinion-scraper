@@ -95,6 +95,8 @@ if __name__ == "__main__":
         
         if is_done:
             break
+        elif len(result_df)==0:
+            break
 
         result_df.to_csv(os.path.join(result_dir, f"hallailbo_opinions_p{page_num}.csv"), encoding="utf-8-sig")
         print(f"{page_num} 페이지 스크랩 완료")
