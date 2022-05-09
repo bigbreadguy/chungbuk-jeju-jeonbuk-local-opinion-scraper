@@ -1,7 +1,4 @@
 import os
-from unittest import result
-import tqdm
-import random
 import requests
 from bs4 import BeautifulSoup
 import pandas as pd
