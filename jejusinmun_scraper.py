@@ -29,7 +29,6 @@ def get_article_list(page_num:int):
             .find("tr").find("td").find("table")
     table_rows = table_body.find_all("tr")
 
-    date = datetime.datetime.strptime(byline_1, "%Y-%m-%d")
     is_done = False
     titles = []
     urls = []
@@ -50,6 +49,7 @@ def get_article_list(page_num:int):
             byline_0 = td_texts[-2]
             byline_1 = td_texts[-1]
 
+            date = datetime.datetime.strptime(byline_1, "%Y-%m-%d")
             if date < datetime.datetime(2018, 5, 1):
                 is_done = True
                 break

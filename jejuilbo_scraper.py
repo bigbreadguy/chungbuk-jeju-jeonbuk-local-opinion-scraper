@@ -26,7 +26,6 @@ def get_article_list(page_num:int):
 
     article_list = soup.find(class_="article-list").find(class_="article-list-content type-sm text-left")
     
-    date = datetime.datetime.strptime(byline_2, "%Y-%m-%d %H:%M")
     is_done = False
     titles = []
     urls = []
@@ -59,6 +58,7 @@ def get_article_list(page_num:int):
         bylines_2.append(byline_2)
         articles.append(article)
 
+        date = datetime.datetime.strptime(byline_2, "%Y-%m-%d %H:%M")
         if date < datetime.datetime(2018, 5, 1):
             is_done = True
             break
