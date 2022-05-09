@@ -54,7 +54,7 @@ def get_article_list(page_num:int):
         bylines_2.append(byline_2)
         articles.append(article)
 
-        date = datetime.strptime(byline_2, "%Y-%m-%d %H:%M")
+        date = datetime.datetime.strptime(byline_2, "%Y-%m-%d %H:%M")
 
         if date < datetime.date(2018, 5, 1):
             is_done = True
