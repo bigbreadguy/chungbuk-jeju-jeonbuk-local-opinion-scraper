@@ -13,16 +13,16 @@ def get_paragraph(url:str):
     response = get_response(url)
     soup = BeautifulSoup(response.content, "html.parser", from_encoding="utf-8")
 
-    paragraphs = soup.find(class_="article-view-content-div").find_all("p")
+    paragraphs = soup.find(id="article-view-content-div").find_all("p")
 
     article = []
     for p in paragraphs:
-        article.append(p.get_text)
+        article.append(p.get_text())
 
     return "\n".join(article)
 
 def get_article_list(page_num:int):
-    url_base = f"http://www.ihalla.com/section.php?sid=43&page={page_num}"
+    url_base = f"https://www.domin.co.kr/news/articleList.html?page={page_num}&sc_section_code=&sc_sub_section_code=S2N39&sc_serial_code=&sc_area=&sc_level=&sc_article_type=&sc_view_level=&sc_sdate=&sc_edate=&sc_serial_number=&sc_word=&sc_word2=&sc_andor=&sc_order_by=E&view_type=sm"
     response = get_response(url_base)
     
     soup = BeautifulSoup(response.content, "html.parser", from_encoding="utf-8")
