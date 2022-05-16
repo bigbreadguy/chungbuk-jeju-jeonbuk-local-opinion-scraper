@@ -13,13 +13,10 @@ def get_paragraph(url:str):
     response = get_response(url)
     soup = BeautifulSoup(response.content, "html.parser", from_encoding="utf-8")
 
-    paragraphs = soup.find(id="article-view-content-div").find_all("p")
+    article_view = soup.find(id="article-view-content-div")
+    paragraphs = article_view.get_text().split("저작권자 © 전북도민일보 무단전재 및 수집, 재배포 금지")[0]
 
-    article = []
-    for p in paragraphs:
-        article.append(p.get_text())
-
-    return "\n".join(article)
+    return paragraphs
 
 def get_article_list(page_num:int):
     url_base = f"https://www.domin.co.kr/news/articleList.html?page={page_num}&sc_section_code=&sc_sub_section_code=S2N39&sc_serial_code=&sc_area=&sc_level=&sc_article_type=&sc_view_level=&sc_sdate=&sc_edate=&sc_serial_number=&sc_word=&sc_word2=&sc_andor=&sc_order_by=E&view_type=sm"
