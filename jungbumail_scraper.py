@@ -13,7 +13,7 @@ def get_paragraph(url:str):
     response = get_response(url)
     soup = BeautifulSoup(response.content, "html.parser", from_encoding="utf-8")
     article_view = soup.find(id="article-view-content-div")
-    article = article_view.find("p").get_text()
+    article = article_view.get_text().split("[사설]")[-1]
     
     return article
 
