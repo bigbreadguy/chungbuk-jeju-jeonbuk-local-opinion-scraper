@@ -13,8 +13,7 @@ def get_paragraph_bylines(url:str):
     response = get_response(url)
     soup = BeautifulSoup(response.content, "html.parser", from_encoding="utf-8")
     article_div = soup.find(class_="article")
-    b = article_div.find("b").get_text()
-    article = article_div.get_text().split(b)[-1]
+    article = article_div.get_text().split("［충북일보］")[-1]
 
     bylines = soup.find(class_="art_sum")
     byline_0 = bylines.find("div").find("a").find("b").get_text()
