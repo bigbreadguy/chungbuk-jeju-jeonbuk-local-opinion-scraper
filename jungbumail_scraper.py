@@ -38,7 +38,8 @@ def get_article_list(page_num:int):
         title = a.get_text()
         url = "http://www.jbnews.com" + a.get("href")
         summary = list_block.find(class_="list-summary").get_text()
-        bylines = list_block.find(class_="list-dated").split(" | ")
+        list_dated = list_block.find(class_="list-dated")
+        bylines = list_dated.get_text().split(" | ")
         byline_0 = bylines[0]
         byline_1 = bylines[1]
         byline_2 = bylines[2]
