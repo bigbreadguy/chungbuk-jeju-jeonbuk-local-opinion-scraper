@@ -13,13 +13,7 @@ def get_paragraph(url:str):
     response = get_response(url)
     soup = BeautifulSoup(response.content, "html.parser", from_encoding="utf-8")
     article = soup.find(id="kwNewsBody").get_text()
-    date = soup.find(id="newstit").find("ul").find(class_="sub").get_text().split("- ")[0]
-
-    try:
-        datetime.datetime.strptime(date, "%Y-%m-%d")
-    except ValueError:
-        date = soup.find(id="newstit").find("ul").find(class_="sub").get_text().split(" - 이지현 기자")[0]
-
+    date = soup.find(id="newstit").find("ul").find(class_="sub").get_text()
 
     return article, date
 
@@ -41,7 +35,11 @@ def get_article_list(page_num:int):
         title = a.find("p").get_text().split("[사설]")[-1]
         article, date = get_paragraph(url)
 
-        date = datetime.datetime.strptime(date, "%Y-%m-%d")
+        try:
+            date = datetime.datetime.strptime(date, "%Y-%m-%d")
+        except ValueError:
+            date = datetime.datetime.strptime(date[:10], "%Y-%m-%d")
+
         if date < datetime.datetime(2018, 5, 1):
             is_done = True
             break
