@@ -40,7 +40,7 @@ def get_article_list(page_num:int):
         except ValueError:
             date = datetime.datetime.strptime(date[:10], "%Y-%m-%d")
 
-        if date < datetime.datetime(2018, 5, 1):
+        if date < datetime.datetime(2021, 5, 1):
             is_done = True
             break
 
