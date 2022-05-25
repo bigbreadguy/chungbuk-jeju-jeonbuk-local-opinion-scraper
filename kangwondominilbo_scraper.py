@@ -13,7 +13,7 @@ def get_paragraph(url:str):
     response = get_response(url)
     soup = BeautifulSoup(response.content, "html.parser", from_encoding="utf-8")
 
-    article = soup.find(id="article-view-content-div").find("p").get_text()
+    article = soup.find(id="article-view-content-div").get_text()
 
     return article
 
@@ -38,14 +38,14 @@ def get_article_list(page_num:int):
         title = h4.find("a").get_text()
         url = "https://www.kado.net/" + h4.find("a").get("href")
         summary = content.find(class_="lead line-6x2").get_text()
-        bylines = content.find(class_="byline").split(" | ")
-        byline_0 = bylines[0]
-        byline_1 = bylines[1]
-        byline_2 = bylines[2]
+        bylines = content.find(class_="byline").get_text().split("\n")
+        byline_0 = bylines[1]
+        byline_1 = bylines[2]
+        byline_2 = bylines[3]
         article = get_paragraph(url)
 
         date = datetime.datetime.strptime(byline_2, "%Y.%m.%d")
-        if date < datetime.datetime(2018, 5, 1):
+        if date < datetime.datetime(2021, 5, 1):
             is_done = True
             break
 
